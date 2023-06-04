@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Library App - Login</title>
+  <style>
+    body {
+      background-image: url("/static/Images/Library_Main.jpg");
+      background-size: auto;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 75vh;
+    }
+    
+    .input-box {
+      width: 300px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-box label {
+      width: 100px;
+      font-weight: bold;
+    }
+
+    .input-box input {
+      flex-grow: 1;
+      margin-left: 10px;
+    }
+    
+    .btn-login {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    
+    .btn {
+      margin: 0 5px;
+    }
+    
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <h2 class="title">Login</h2>
+
+    {% if result == 'inv_username' %}
+      <p class="error">Invalid username!</p>
+    {% elif result == 'inv_password' %}
+      <p class="error">Invalid password!</p>
+    {% elif result == 'valid_credentials' %}
+      <p class="success">Login successful!</p>
+    {% endif %}
+
+    <form action="/login" method="post">
+
+      <div class="input-box">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+
+      <div class="input-box">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <div class="btn-login">
+        <input class="btn" type="submit" value="Login">
+        <a class="btn" href="/register">Register</a>
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>

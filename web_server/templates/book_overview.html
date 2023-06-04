@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Overview</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .book-details {
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .request-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .request-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .flash-messages {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .flash-message {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .back-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Overview</h1>
+    <div class="book-details">
+        <table>
+            <tbody>
+                <tr>
+                    <th>ISBN</th>
+                    <td>{{ book_details.ISBN }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ book_details.title }}</td>
+                </tr>
+                <tr>
+                    <th>Author</th>
+                    <td>{{ book_details.author.first_name }}{{ book_details.author.last_name }} </td>
+                </tr>
+                <tr>
+                    <th>Number of Pages</th>
+                    <td>{{ book_details.num_pages }}</td>
+                </tr>
+                <tr>
+                    <th>Categories</th>
+                    <td>{{ book_details.categories }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ book_details.description }}</td>
+                </tr>
+                <tr>
+                    <th>Publication Date</th>
+                    <td>{{ book_details.publication_date }}</td>
+                </tr>
+                <tr>
+                    <th>Publisher</th>
+                    <td>{{ book_details.publisher }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="request-buttons">
+        <form method="POST" action="/book_overview/{{ book_details.ISBN}}/{{ user_id}}">
+            <button type="submit" name="submit" value="Make Lending Request">Make Lending Request</button>
+            <button type="submit" name="submit" value="Make Reservation Request">Make Reservation Request</button>
+        </form>
+    </div>
+    <a href="/search_book/{{ user_id }}" class="btn btn-primary back-button">Back to Book Search</a>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+</body>
+</html>
+

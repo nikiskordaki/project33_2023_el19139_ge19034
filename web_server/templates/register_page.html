@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library App - Register</title>
+  <style>
+    body {
+      background-image: url("/static/Images/Library_Main.jpg");
+      background-size: auto;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .register-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .input-box {
+      width: 300px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-box label {
+      width: 100px;
+      font-weight: bold;
+    }
+
+    .input-box input,
+    .input-box select {
+      flex-grow: 1;
+      margin-left: 10px;
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .input-box select {
+      font-weight: bold;
+    }
+
+    .btn-register {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .btn-register .btn {
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="register-box">
+    <h2>Register</h2>
+    <form action="/register" method="post">
+      <div class="input-box">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-box">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="input-box">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="input-box">
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+      </div>
+      <div class="input-box">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="input-box">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="input-box">
+        <label for="day">Date of Birth:</label>
+        <select id="day" name="day" required>
+          <option value="">Day</option>
+          {% for day in range(1, 32) %}
+            <option value="{{ day }}">{{ day }}</option>
+          {% endfor %}
+        </select>
+        
+        <select id="month" name="month" required>
+          <option value="">Month</option>
+          {% for month in range(1, 13) %}
+            <option value="{{ month }}">{{ month }}</option>
+          {% endfor %}
+        </select>
+        
+        <select id="year" name="year" required>
+          <option value="">Year</option>
+          {% for year in range(1900, 2024) %}
+            <option value="{{ year }}">{{ year }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="input-box">
+        <label for="school">School:</label>
+        <select id="school" name="school">
+          {% for option in school_options %}
+          <option value="{{ option }}">{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-box">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="library_admin">Library Operator</option>
+        </select>
+      </div>
+
+      <div class="input-box">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br><br>
+      </div>
+
+      <div class="input-box">
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" required><br><br>
+      </div>
+
+      <div class="input-box">
+        <label for="street_number">Street Number:</label>
+        <input type="text" id="street_number" name="street_number" required><br><br>
+      </div>
+
+      <div class="input-box">
+        <label for="postal_code">Postal Code:</label>
+        <input type="text" id="postal_code" name="postal_code" required><br><br>
+      </div>
+
+      <div class="input-box">
+        <label for="district">District:</label>
+        <input type="text" id="district" name="district" required><br><br>
+      </div>
+
+      <div class="btn-register">
+        <input class="btn" type="submit" value="Register">
+        <a class="btn" href="/">Back to Login</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+

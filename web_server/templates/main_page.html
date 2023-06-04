@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library App - Main Page</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      margin-top: 50px;
+    }
+    .profile-info {
+      text-align: left;
+      width: 300px;
+      border: 1px solid lightgray;
+      padding: 20px;
+    }
+    .services {
+      text-align: left;
+      width: 300px;
+      border: 1px solid lightgray;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .link-button {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: blue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome, {{ username }}!</h1>
+  <div class="container">
+    <div class="profile-info">
+      <h2>Profile Information</h2>
+      <p><strong>Name:</strong> {{ name }} {{ surname }}</p>
+      <p><strong>Date of Birth:</strong> {{ birth_date }}</p>
+      <p><strong>Phone:</strong> {{ phone }}</p>
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>User Type:</strong> {{ role }}</p>
+    </div>
+    <div class="profile-info">
+      <h3>Address Information</h3>
+      <p><strong>City: </strong>{{ address.city }}</p>
+      <p><strong>Street: </strong>{{ address.street }}</p>
+      <p><strong>Street Number: </strong>{{ address.street_number }}</p>
+      <p><strong>Postal Code: </strong>{{ address.postal_code }}</p>
+      <p><strong>District: </strong>{{ address.district }}</p>
+    </div>
+  
+    <div class="services">
+      <h2>Available Services</h2>
+      <ul>
+        <li><a href="/search_book/{{ user_id }}">Search a Book</a></li>
+        <li><a href="/my_books/{{ user_id }}">My Books</a></li>
+        {% if allow_edit %}
+          <li><a href="/edit_profile/{{ user_id }}">Edit Profile</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('change_password', user_id=user_id) }}">Change My Password</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
